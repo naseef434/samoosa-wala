@@ -1,0 +1,2 @@
+https://i2qpn3ygos75sdvwqrkzqvzdia0fmjvu.lambda-url.ap-south-1.on.aws
+https://i2qpn3ygos75sdvwqrkzqvzdia0fmjvu.lambda-url.ap-south-1.on.aws/docs

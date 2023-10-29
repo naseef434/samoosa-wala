@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import AddNew from '../../components/AddNew'
-import SaleOrReturn from '../../components/SaleOrReturn'
+import SaleOrReturns from '../../components/SaleOrReturn'
 import { Link, useMatch } from 'react-router-dom'
-import DataTable from '../../components/DataTable'
-
-
-export default function DashBoard({
-    startDate,
-    endDate,
-    handleStartDateChange,
-    handleEndDateChange }) {
-    const match = useMatch('/Dashboard');
-
+export default function SaleOrReturn() {
+    const [addModal, setAddModal] = useState(false)
+    const [saleOrReturnModal, setSaleOrReturmModal] = useState(false)
+    const match = useMatch('/saleOrReturn');
     return (
+
         <div id="app">
             <div id="sidebar" className="active">
                 <div className="sidebar-wrapper active">
@@ -22,16 +17,14 @@ export default function DashBoard({
                     <div className="sidebar-menu">
                         <ul className="menu">
                             <li className="sidebar-title">Main Menu</li>
-                            <li className={`sidebar-item ${match ? 'active' : ''}`}>
-
+                            <li className="sidebar-item  ">
                                 <Link to="/Dashboard" className="sidebar-link">
                                     <i data-feather="home" width={20} />
                                     <span>Dashboard</span>
                                 </Link>
-
                             </li>
 
-                            <li className="sidebar-item  ">
+                            <li className={`sidebar-item ${match ? 'active' : ''}`}>
                                 <Link to="/saleOrReturn" className="sidebar-link">
                                     <i data-feather="home" width={20} />
                                     <span>SaleOrReturn</span>
@@ -156,15 +149,52 @@ export default function DashBoard({
                     </div>
                 </nav>
 
-                <DataTable
-                    startDate={startDate}
-                    endDate={endDate}
-                    handleStartDateChange={handleStartDateChange}
-                    handleEndDateChange={handleEndDateChange}
-                />
+                <div className="row mb-2">
+                    <div className="col-12 col-md-3" onClick={() => { setAddModal(!addModal) }}>
+                        <div className="card card-statistic">
+                            <div className="card-body p-0">
+                                <div className="d-flex flex-column">
+                                    <div className="px-3 py-3 d-flex justify-content-between">
+                                        <h3 className="card-title">Add New</h3>
+                                        <div className="card-right d-flex align-items-center">
+                                            <p>+ </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-12 col-md-3" onClick={() => { setSaleOrReturmModal(!saleOrReturnModal) }}>
+                        <div className="card card-statistic">
+                            <div className="card-body p-0" >
+                                <div className="d-flex flex-column" >
+                                    <div className="px-3 py-3 d-flex justify-content-between">
+                                        <h3 className="card-title">Sale</h3>
+                                        <div className="card-right d-flex align-items-center">
+                                            <p>+ </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                {/* &nbsp;&nbsp;&nbsp;  <a href="#" class="btn btn-primary" onClick={() => { setAddModal(!addModal) }}>Add New</a>
+                &nbsp;&nbsp;&nbsp; <a href="#" class="btn btn-primary" onClick={() => { setSaleOrReturmModal(!saleOrReturnModal) }}>Add Sale</a>
+              */}
+                {addModal && <AddNew setAddModal={setAddModal} addModal={addModal} />}
+                {saleOrReturnModal &&
+                    <SaleOrReturns setSaleOrReturmModal={setSaleOrReturmModal}
+                        saleOrReturnModal={saleOrReturnModal} />
+                }
+
             </div>
         </div>
-
-
     )
 }

@@ -3,8 +3,16 @@
 import axios from 'axios';
 import { addProductOrDistributor } from './serviceEndPoints';
 
-const addProductOrDistributorFun = async (category, inputname) => {
 
+// const axiosInstance = axios.create({
+//     baseURL: process.env.REACT_APP_API_URL,
+//     headers: {
+//         'Content-Type': 'application/json', // Set the content type you are sending
+//         'Access-Control-Allow-Origin': '*', // This is a sample header; you may not need to set it here
+//         // Add any other headers as needed
+//     },
+// });
+const addProductOrDistributorFun = async (category, inputname) => {
     try {
         const response = await axios.post(addProductOrDistributor.AddProductOrDist, { [category]: inputname });
         return response.data;
@@ -28,7 +36,7 @@ const fetchAllProduct = async () => {
 const saleOrReturnFunction = async (payload) => {
 
     try {
-        const response = await axios.post(addProductOrDistributor.saleOrReturn,  payload );
+        const response = await axios.post(addProductOrDistributor.saleOrReturn, payload);
         return response.data;
     } catch (error) {
         throw error;
@@ -38,4 +46,4 @@ const saleOrReturnFunction = async (payload) => {
 
 
 
-export { addProductOrDistributorFun,fetchAllProduct,saleOrReturnFunction };
+export { addProductOrDistributorFun, fetchAllProduct, saleOrReturnFunction };

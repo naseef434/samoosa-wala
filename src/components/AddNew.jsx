@@ -6,7 +6,13 @@ export default function AddNew({ setAddModal, addModal }) {
 
     const [category, setCategory] = useState({ checked: null, name: null })
     const [name, setName] = useState()
-    const notify = () => toast.success('Added Successfully!')
+    const notify = (message, type = 'success') => {
+        if (type === 'success') {
+            toast.success(message);
+        } else if (type === 'error') {
+            toast.error(message);
+        }
+    };
     const handleCheckBox = (e) => {
         const { value, checked } = e.target;
         // setCategory(value)
@@ -27,19 +33,26 @@ export default function AddNew({ setAddModal, addModal }) {
 
 
     const handleSubmit = () => {
-        postProductOrDistributor().then((res) => {
-            setName("")
-            setCategory({ checked: null, name: null })
-        })
-        notify()
-    }
+        postProductOrDistributor()
+            .then((res) => {
+                // Handle success
+                console.log({ res });
+                setName("");
+                setCategory({ checked: null, name: null });
+                notify('Added Successfully', 'success');
+            })
+            .catch((error) => {
+                // Handle error
+                notify('An error occurred', 'error');
+            });
+    };
 
     const postProductOrDistributor = async () => {
         try {
             const result = await addProductOrDistributorFun(category.name, name);
-
+            return result; // Assuming that addProductOrDistributorFun returns the result on success
         } catch (error) {
-            console.error("Error fetching data for tab 0:", error);
+            throw error; // Throw the error if something goes wrong
         }
     };
 
@@ -58,6 +71,11 @@ export default function AddNew({ setAddModal, addModal }) {
                 className="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable"
                 role="document"
             >
+
+
+            
+
+
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalCenterTitle">

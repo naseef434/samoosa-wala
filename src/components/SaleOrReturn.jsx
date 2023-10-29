@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast';
+
 import { addProductOrDistributorFun, fetchAllProduct, saleOrReturnFunction, } from '../config/services/apis';
 
 export default function SaleOrReturn({ setSaleOrReturmModal, saleOrReturnModal }) {
@@ -6,6 +8,17 @@ export default function SaleOrReturn({ setSaleOrReturmModal, saleOrReturnModal }
 
     const [category, setCategory] = useState({ checked: null, name: null })
     const [name, setName] = useState()
+    const [quantity, setQuantity] = useState('');
+
+
+
+    const notify = (message, type = 'success') => {
+        if (type === 'success') {
+            toast.success(message);
+        } else if (type === 'error') {
+            toast.error(message);
+        }
+    };
 
     const handleCheckBox = (event) => {
 
@@ -27,16 +40,57 @@ export default function SaleOrReturn({ setSaleOrReturmModal, saleOrReturnModal }
         setName(e.target.value)
     }
 
+    const addSaleOrReturnFunction = (data) => {
+        return new Promise((resolve, reject) => {
+            saleOrReturnFunction(data)
+                .then((res) => {
+                    // If the inner saleOrReturnFunction resolves, pass the result to the outer promise
+                    resolve(res);
+                })
+                .catch((error) => {
+                    // If the inner saleOrReturnFunction rejects, pass the error to the outer promise
+                    reject(error);
+                });
+        });
+    };
 
     const handleSubmit = () => {
-       addSaleOrReturnFunction(payLoadData)
-    }
+        addSaleOrReturnFunction(payLoadData)
+            .then((res) => {
+                // Handle success
+                alert()
+                setQuantity('');
+                console.log({ res });
+                setName(null);
+                setCategory({ checked: null, name: null });
+                notify('Added Successfully', 'success');
+            })
+            .catch((error) => {
+                // Handle error
+                notify('An error occurred', 'error');
+            });
+    };
 
 
-    const addSaleOrReturnFunction = () => {
-        saleOrReturnFunction(payLoadData)
+    // const handleSubmit = () => {
+    //     addSaleOrReturnFunction(payLoadData).then((res) => {
+    //         // Handle success
+    //         console.log({ res });
+    //         setName("");
+    //         setCategory({ checked: null, name: null });
+    //         notify('Added Successfully', 'success');
+    //     })
+    //         .catch((error) => {
+    //             // Handle error
+    //             notify('An error occurred', 'error');
+    //         });
+    // }
 
-    }
+
+    // const addSaleOrReturnFunction = () => {
+    //     saleOrReturnFunction(payLoadData)
+
+    // }
 
     const [distributors, setDistributors] = useState([])
     const [products, setProducts] = useState([])
@@ -75,13 +129,14 @@ export default function SaleOrReturn({ setSaleOrReturmModal, saleOrReturnModal }
 
 
     const handleQuantity = (e) => {
+        setQuantity(e.target.value);
         setpayLoadData({ ...payLoadData, quantity: Number(e.target.value) });
     }
 
     useEffect(() => {
         fetchAll()
     }, [])
-  
+
     return (
         <div
             className="modal fade show"
@@ -179,13 +234,10 @@ export default function SaleOrReturn({ setSaleOrReturmModal, saleOrReturnModal }
                                 <label htmlFor="">Select Distributor</label>
                                 <select className="form-select" id="basicSelect" name="distibutor" value={selected} onChange={handleChangeDropDown}>
                                     {distributors?.map((dist) => {
-
                                         return <option key={dist.itemId} value={dist.itemId}>{dist?.itemName}</option>
                                     }
-
                                     )}
                                 </select>
-
                             </div>
                             <br /><br />
 
@@ -206,7 +258,7 @@ export default function SaleOrReturn({ setSaleOrReturmModal, saleOrReturnModal }
                                     className="form-control"
                                     name="fname"
                                     placeholder="Quantity"
-
+                                    value={quantity}
                                     onChange={handleQuantity}
                                 />
 
@@ -236,6 +288,8 @@ export default function SaleOrReturn({ setSaleOrReturmModal, saleOrReturnModal }
                     </div>
                 </div>
             </div>
+            <Toaster position="bottom-center"
+                reverseOrder={false} />
         </div>
 
     )

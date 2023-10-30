@@ -108,13 +108,16 @@ export default function SaleOrReturn({ setSaleOrReturmModal, saleOrReturnModal }
 
     const [selected, setSelected] = useState();
     const handleChangeDropDown = event => {
+        const selectedProduct = products?.find(product => product.itemId === event.target.value);
 
+        // Get the selected product's name
+        const selectedProductName = selectedProduct?.itemName;
         setSelected(event.target.value);
         if (event.target.name === "distibutor") {
-            setpayLoadData({ ...payLoadData, distId: event.target.value });
+            setpayLoadData({ ...payLoadData, distId: event.target.value ,prdName: selectedProductName });
 
         } else {
-            setpayLoadData({ ...payLoadData, prdId: event.target.value });
+            setpayLoadData({ ...payLoadData, prdId: event.target.value,prdName: selectedProductName  });
 
         }
     };

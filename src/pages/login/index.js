@@ -21,22 +21,25 @@ export default function Index() {
     })
   }
 
+  console.log({ formData });
 
   // // handle submit  
   const handleSubmit = async (e) => {
     axios.post('https://i2qpn3ygos75sdvwqrkzqvzdia0fmjvu.lambda-url.ap-south-1.on.aws/login', {
+      // userName : formData?.userName, 
+      // password : formData?.password 
       userName: "SmsaSales",
       password: "Bismillah",
       // access_key: "grit-b2f5d2ec-36a1-4e68-8f93-19b0f729a4d3"
     })
       .then(function (response) {
-    
-        localStorage.setItem("session",response?.data?.session)
+
+        localStorage.setItem("session", response?.data?.session)
         response?.status === 200 && navigate("/dashboard");
       })
       .catch(function (error) {
         // handle error
-        if (error?.response?.status === 403) {
+        if (error?.response?.status === 422 || error?.response?.status === 403 || error?.response?.status === 401) {
           setError(true)
         } else {
           console.log("something went wrong");

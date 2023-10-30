@@ -1,52 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function DataTable({
     startDate,
     endDate,
     handleStartDateChange,
-    handleEndDateChange }) {
+    handleEndDateChange,
+    date,
+    dateEnd,
+    dataS }) {
 
 
-    const dummy = {
-        "tableHeaders": [
-            "distName",
-            "checkensamoosa",
-            "veg smsa",
-            "cccccccccccccc",
-            "Nas",
-            "naseef",
-            "chicken samooosa",
-            "Paneer buttor masala",
-            "yummy",
-            "smsa"
-        ],
-        "Items": [
-            {
-                "distName": "Naseef",
-                "checkensamoosa": 550,
-                "veg smsa": 150,
-                "cccccccccccccc": 0,
-                "Nas": 0,
-                "naseef": 0,
-                "chicken samooosa": -100,
-                "Paneer buttor masala": 0,
-                "yummy": 0,
-                "smsa": 0
-            },
-            {
-                "distName": "shamil",
-                "checkensamoosa": 275,
-                "veg smsa": 770,
-                "cccccccccccccc": 0,
-                "Nas": 800,
-                "naseef": 0,
-                "chicken samooosa": 0,
-                "Paneer buttor masala": 0,
-                "yummy": 0,
-                "smsa": 800
-            }
-        ]
-    }
+
+
+    console.log({ e: dataS?.tableHeaders });
 
     return (
         <section className="section">
@@ -61,7 +27,7 @@ export default function DataTable({
                             type="date"
                             id="startDate"
                             name="startDate"
-                            value={startDate}
+                            value={date}
                             onChange={handleStartDateChange}
                             style={{
                                 border: '1px solid #ccc',
@@ -78,7 +44,7 @@ export default function DataTable({
                             type="date"
                             id="endDate"
                             name="endDate"
-                            value={endDate}
+                            value={dateEnd}
                             onChange={handleEndDateChange}
                             style={{
                                 border: '1px solid #ccc',
@@ -91,28 +57,52 @@ export default function DataTable({
                     </div>
 
                 </div>
-
                 <div className="card-body">
                     <table className="table table-striped" id="table1">
                         <thead>
                             <tr>
-
-                                {dummy?.tableHeaders?.map(product => (
-                                    <th key={product}>{product}</th>
+                                {dataS?.tableHeaders?.map((header) => (
+                                    header === "distName" ? (
+                                        <th key={header}>Distributor Name</th>
+                                    ) : (
+                                        <th key={header}>{header}</th>
+                                    )
                                 ))}
+
                             </tr>
                         </thead>
                         <tbody>
-                            {dummy.Items.map((item, index) => (
-                                <tr key={index}>
-                                {dummy.tableHeaders.map(header => (
-                                  <td key={header}>{item[header]}</td>
-                                ))}
-                              </tr>
+                            {dataS?.Items?.map((item, index) => (
+                                <tr key={item.distId}>
+                                    {dataS.tableHeaders.map((header) => (
+                                        <td key={header}>{item[header]}</td>
+                                    ))}
+                                </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
+                {/* 
+                <div className="card-body">
+                    <table className="table table-striped" id="table1">
+                        <thead>
+                            <tr>
+                    {dataS?.tableHeaders?.map((item)=>(
+                        <h1>adss</h1>
+                    ))}                       
+                                </tr>
+                        </thead>
+                        <tbody>
+                            { dataS?.Items?.map((item, index) => (
+                                <tr key={index}>
+                                    {dataS?.tableHeaders?.map(header => (
+                                        <td key={header}>{item[header]}</td>
+                                    ))}
+                                </tr>
+                            )) }
+                        </tbody>
+                    </table>
+                </div> */}
 
 
                 {/* <div className="card-body">

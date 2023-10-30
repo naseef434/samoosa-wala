@@ -45,5 +45,21 @@ const saleOrReturnFunction = async (payload) => {
 
 
 
+const selectbydaterange = async (payload) => {
+    try {
+     
+        const formattedStartDate = payload?.startDate.slice(0, -5);
+        const formattedEndDate = payload?.endDate.slice(0, -5);
+        const response = await axios.post(addProductOrDistributor.selectbydaterange, { fromDate:formattedStartDate, toDate: formattedEndDate });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
 
-export { addProductOrDistributorFun, fetchAllProduct, saleOrReturnFunction };
+
+
+
+
+
+export { addProductOrDistributorFun, fetchAllProduct, saleOrReturnFunction, selectbydaterange };

@@ -9,7 +9,10 @@ export default function DashBoard({
     startDate,
     endDate,
     handleStartDateChange,
-    handleEndDateChange }) {
+    handleEndDateChange, 
+    date,
+    dateEnd,
+    dataS}) {
     const match = useMatch('/Dashboard');
 
     return (
@@ -115,7 +118,7 @@ export default function DashBoard({
                                     </a>
                                     <div className="dropdown-divider" />
                                     <a className="dropdown-item" href="#">
-                                        <i data-feather="log-out" /> Logout
+                                        <i data-feather="log-out" /> Logoutss
                                     </a>
                                 </div>
                             </li>
@@ -147,9 +150,9 @@ export default function DashBoard({
                                         <i data-feather="settings" /> Settings
                                     </a>
                                     <div className="dropdown-divider" />
-                                    <a className="dropdown-item" href="#">
+                                    <Link to="/"  className="dropdown-item" href="#">
                                         <i data-feather="log-out" /> Logout
-                                    </a>
+                                    </Link>
                                 </div>
                             </li>
                         </ul>
@@ -161,6 +164,9 @@ export default function DashBoard({
                     endDate={endDate}
                     handleStartDateChange={handleStartDateChange}
                     handleEndDateChange={handleEndDateChange}
+                    date={date}
+                    dateEnd={dateEnd}
+                    dataS={dataS}
                 />
             </div>
         </div>

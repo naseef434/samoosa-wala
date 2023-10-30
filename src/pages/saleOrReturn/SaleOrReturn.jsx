@@ -140,9 +140,9 @@ export default function SaleOrReturn() {
                                         <i data-feather="settings" /> Settings
                                     </a>
                                     <div className="dropdown-divider" />
-                                    <a className="dropdown-item" href="#">
+                                    <Link to="/"  className="dropdown-item" href="#">
                                         <i data-feather="log-out" /> Logout
-                                    </a>
+                                    </Link>
                                 </div>
                             </li>
                         </ul>

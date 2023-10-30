@@ -4,6 +4,7 @@ import { baseUrl } from './service'
 export const addProductOrDistributor = {
     AddProductOrDist: `${baseUrl}/addProductOrDistributor`,
     fetchAllDistributor: `${baseUrl}/getAllDistrbtrPrd`,
-    saleOrReturn: `${baseUrl}/addQuantity`
+    saleOrReturn: `${baseUrl}/addQuantity`,
+    selectbydaterange: `${baseUrl}/selectbydaterange`
 }
 

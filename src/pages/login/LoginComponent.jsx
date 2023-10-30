@@ -33,7 +33,7 @@ export default function LoginComponent({
                 <div className="form-group position-relative has-icon-left">
                   <label htmlFor="username">Username</label>
                   <div className="position-relative">
-                    <input type="text" className="form-control" name='username' onChange={handleInputFieldChange} id="username" />
+                    <input type="text" className="form-control" name='userName' onChange={handleInputFieldChange} id="username" />
                     <div className="form-control-icon">
                       <i data-feather="user" />
                     </div>

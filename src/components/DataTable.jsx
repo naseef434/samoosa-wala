@@ -60,7 +60,33 @@ export default function DataTable({
                 <div className="card-body">
                     <table className="table table-striped" id="table1">
                         <thead>
+                            <th colSpan={20}><h3><b>Naseef</b></h3></th>
                             <tr>
+                                <th>Date</th>
+                                <th>MK</th>
+                                <th>Return</th>
+
+                                <th>MKM</th>
+                                <th>Return</th>
+
+                                <th>MKC</th>
+                                <th>Return</th>
+
+                                <th>AD</th>
+                                <th>Return</th>
+
+                                <th>ADM</th>
+                                <th>Return</th>
+
+                                <th>ADC</th>
+                                <th>Return</th>
+
+                                <th>SPicy</th>
+                                <th>Return</th>
+                                <th>Cash</th>
+
+                            </tr>
+                            {/* <tr>
                                 {dataS?.tableHeaders?.map((header) => (
                                     header === "distName" ? (
                                         <th key={header}>Distributor Name</th>
@@ -69,16 +95,73 @@ export default function DataTable({
                                     )
                                 ))}
 
-                            </tr>
+                            </tr> */}
                         </thead>
                         <tbody>
-                            {dataS?.Items?.map((item, index) => (
+                            <tr>
+                                <td>10/31/2023</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>5000</td>
+
+                            </tr>
+                            <tr>
+                                <td>1/10/2023</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>5000</td>
+
+                            </tr>
+                            <tr>
+                                <td>02/10/2023</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>20</td>
+                                <td>10</td>
+                                <td>5000</td>
+
+                            </tr>
+                            {/* {dataS?.Items?.map((item, index) => (
                                 <tr key={item.distId}>
                                     {dataS.tableHeaders.map((header) => (
                                         <td key={header}>{item[header]}</td>
                                     ))}
                                 </tr>
-                            ))}
+                            ))} */}
                         </tbody>
                     </table>
                 </div>
